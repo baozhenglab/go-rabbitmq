@@ -85,12 +85,14 @@ func (rs *rabbitMQService) reconnectIfFail() {
 	for{
 		select {
 		case err := <- notify:
-			rs.logger.Errorf("error connect to rabbitmq service: %v",err)
-			conn.Close()
-			rs.logger.Info("Need reconnect rabbitmq to service running")
-			rs.isRunning = false
-			rs.once = new(sync.Once)
-			rs.Get()
+			if err != nil {
+				rs.logger.Errorf("error connect to rabbitmq service: %v",err)
+				conn.Close()
+				rs.logger.Info("Need reconnect rabbitmq to service running")
+				rs.isRunning = false
+				rs.once = new(sync.Once)
+				rs.Get()
+			}
 			return
 		}
 	}
