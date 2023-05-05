@@ -4,7 +4,7 @@ import (
 	"flag"
 	"fmt"
 	"github.com/baozhenglab/go-sdk/v2/logger"
-	"github.com/streadway/amqp"
+	amqp "github.com/rabbitmq/amqp091-go"
 	"sync"
 	"time"
 )
