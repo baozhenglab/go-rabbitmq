@@ -75,7 +75,7 @@ func (rs *rabbitMQService) Get() interface{} {
 				rs.isRunning = true
 				rs.conn = conn
 			}
-			go rs.reconnectIfFail()
+			//go rs.reconnectIfFail()
 		}
 	})
 	return rs.conn
